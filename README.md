@@ -35,10 +35,14 @@ that your data  : 00 91 6f 0b f5
 	----|W0		BEEP|----
 	----|W1		 GND|----
 		+-----------+
-
 ```
 
 ### Usage
+Connecting RFID Reader RX, TX to Arduino pin headers.
+
+`RX <--> 10`
+`TX <--> 11`
+
 ```
 
 ```
