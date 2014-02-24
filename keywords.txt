@@ -1,0 +1,17 @@
+#######################################
+# Syntax Coloring Map for SeeedRFIDLib
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+SeeedRFID	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+data KEYWORD2
+isAvailable   KEYWORD2
+cardNumber KEYWORD2
