@@ -48,12 +48,14 @@
 * ```
 ***************************************************************************/
 
+#include <SoftwareSerial.h>
 #include "SeeedRFID.h"
+#include "Arduino.h"
 
 SeeedRFID::SeeedRFID(int rxPin, int txPin)
 {
-	_io = new SoftwareSerail(rxPin, txPin);
-	_io->begin(9600);
+    _rfidIO = new SoftwareSerial(rxPin, txPin);
+    _rfidIO->begin(9600);
 
 	// init RFID data
 	_data.dataLen = 0;
@@ -68,15 +70,15 @@ SeeedRFID::~SeeedRFID()
 {
 }
 
-boolean checkBitValidationUART()
+boolean SeeedRFID::checkBitValidationUART()
 {
 	if( 5 == _data.dataLen && (_data.raw[4] == _data.raw[0]^_data.raw[1]^_data.raw[2]^_data.raw[3]))
 	{
-		_tag.valid = _isAvailable = true;
+		_data.valid = _isAvailable = true;
 		return true;
 	} else
 	{
-		_tag.valid = _isAvailable = false;
+		_data.valid = _isAvailable = false;
 		return false;
 	}
 }
@@ -90,27 +92,30 @@ boolean SeeedRFID::read()
 		_data.dataLen = 0;
 	}
 
-	if (_io->available() > 0)
+	while (_rfidIO->available())
 	{
-		_data.raw[_data.dataLen++] = _io->read();
+		_data.raw[_data.dataLen++] = _rfidIO->read();
+#ifdef DEBUG
+	Serial.println("SeeedRFID:read() function, and the RFID raw data: ");
+	for (int i = 0; i < _data.dataLen; ++i)
+	{
+		Serial.println();
+		Serial.print(_data.raw[i], HEX);
+		Serial.print('\t');
+	}
+	Serial.println();
+#endif
+		delay(10);
 	}
 
-	return this.checkBitValidationUART();
+	return SeeedRFID::checkBitValidationUART();
 }
 
 boolean SeeedRFID::isAvailable()
 {
 	switch(_type){
 		case RFID_UART:
-			return this.read();
-#ifdef DEBUG
-	Serial.println("All data from read()");
-	Serial.println(_data.raw, HEX);
-	Serial.print("RFID check bit: ");
-	Serial.println(_data.chk, HEX);
-	Serial.print("RFID data validation: ");
-	Serial.println(_data.valid);
-#endif
+			return SeeedRFID::read();
 			break;
 		case RFID_WIEGAND:
 			return false;
@@ -127,30 +132,32 @@ RFIDdata SeeedRFID::data()
 	{
 		return _data;
 	}else{
-		return 1; // empty data	
+		// empty data
+		RFIDdata _tag;
+		return _tag;
 	}
 }
 
-long SeeedRFID::cardNumber()
+unsigned long SeeedRFID::cardNumber()
 {
-#ifdef DEBUG
-	unsigned long debugNumber = 0x00916f0b;
-	Serial.print("debugNumber(0x00916f0b): ");
-	Serial.println(debugNumber);
-#endif
+	// unsigned long myZero = 255;
 
 	unsigned long sum = 0;
-	if(0 != data[0]){
-		sum = sum + data[0];
+	if(0 != _data.raw[0]){
+		// _data.raw[0] = 	_data.raw[0] & myZero;
+		sum = sum + _data.raw[0];
 		sum = sum<<24;
 	}
-	sum = sum + data[1];
+	// _data.raw[1] = 	_data.raw[1] & myZero;
+	sum = sum + _data.raw[1];
 	sum = sum<<16;
 
 	unsigned long sum2 = 0;
-	sum2 = sum2  + data[2];
+	// _data.raw[2] = 	_data.raw[2] & myZero;
+	sum2 = sum2  + _data.raw[2];
 	sum2 = sum2 <<8;
-	sum2 = sum2  + data[3];
+	// _data.raw[3] = 	_data.raw[3] & myZero;
+	sum2 = sum2  + _data.raw[3];
 
 	sum = sum + sum2;
 
@@ -160,4 +167,6 @@ long SeeedRFID::cardNumber()
 	Serial.print("cardNumber: ");
     Serial.println(sum);
 #endif
+
+    return sum;
 }

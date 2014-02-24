@@ -59,7 +59,7 @@ struct RFIDdata
 	int dataLen;
 	byte chk;
 	boolean valid;
-	char raw[5];
+	unsigned char raw[5];
 };
 
 enum RFIDType
@@ -71,8 +71,7 @@ enum RFIDType
 class SeeedRFID
 {
 private:
-	SoftwareSerial *_io;
-		// SoftwareSerial * _rfidIO; // software serail
+	SoftwareSerial * _rfidIO; // software serail
 	RFIDdata _data;
 	boolean _isAvailable;
 	RFIDType _type;
@@ -84,7 +83,7 @@ public:
 
 	boolean isAvailable();
 	RFIDdata data();
-	long cardNumber();
+	unsigned long cardNumber();
 };
 
 #endif //__SeeedRFID_H__
