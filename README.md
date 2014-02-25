@@ -98,3 +98,7 @@ global distributors and partners to push open hardware movement.<br>
 
 [RFID Image]: http://www.seeedstudio.com/wiki/images/6/6a/RFID.jpg
 [Github Homepage]: https://github.com/yexiaobo-seeedstudio
+
+
+
+[![Analytics](https://ga-beacon.appspot.com/UA-46589105-3/RFID_Library)](https://github.com/igrigorik/ga-beacon)
