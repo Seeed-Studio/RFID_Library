@@ -83,6 +83,7 @@ public:
 
 	boolean isAvailable();
 	RFIDdata data();
+	boolean listen();
 	unsigned long cardNumber();
 };
 
