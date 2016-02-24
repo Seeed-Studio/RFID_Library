@@ -1,8 +1,8 @@
-/*    
- * SeeedRFID.h  
+/*
+ * SeeedRFID.h
  * A library for RFID moudle.
- *   
- * Copyright (c) 2008-2014 seeed technology inc.  
+ *
+ * Copyright (c) 2008-2014 seeed technology inc.
  * Author      : Ye Xiaobo(yexiaobo@seeedstudio.com)
  * Create Time: 2014/2/20
  *
@@ -14,10 +14,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -35,13 +35,13 @@
 * 2. TX, RX connect to Arduino or Seeeduino
 * 3. T1, T2 is the Signal port for RFID antenna
 * 4. W0, W1 is for wiegand protocol, but this library not support yet.
-* 
+*
 * ```
 * 		+-----------+
 * 	----|VCC	  T1|----
 * 	----|GND	  T2|----
 * 	----|TX		 SER|----
-* 	----|RX		 LED|----	
+* 	----|RX		 LED|----
 * 	----|W0		BEEP|----
 * 	----|W1		 GND|----
 * 		+-----------+
@@ -63,7 +63,7 @@ struct RFIDdata
 };
 
 enum RFIDType
-{ 
+{
 	RFID_UART,
 	RFID_WIEGAND
 };
@@ -83,8 +83,9 @@ public:
 
 	boolean isAvailable();
 	RFIDdata data();
+	boolean listen();
 	unsigned long cardNumber();
-  void listen();
+    void listen();
 };
 
 #endif //__SeeedRFID_H__

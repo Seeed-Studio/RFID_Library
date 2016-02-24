@@ -70,6 +70,7 @@ SeeedRFID::~SeeedRFID()
 {
 }
 
+
 boolean SeeedRFID::checkBitValidationUART()
 {
 	if( 5 == _data.dataLen && (_data.raw[4] == _data.raw[0]^_data.raw[1]^_data.raw[2]^_data.raw[3]))
@@ -83,15 +84,21 @@ boolean SeeedRFID::checkBitValidationUART()
 	}
 }
 
+boolean SeeedRFID::listen()
+{
+	_rfidIO->listen();
+}
+
 boolean SeeedRFID::read()
 {
+
 	_isAvailable = false;
 
 	if (_data.dataLen != 0)
 	{
 		_data.dataLen = 0;
 	}
-
+	
 	while (_rfidIO->available())
 	{
 		_data.raw[_data.dataLen++] = _rfidIO->read();
@@ -169,7 +176,4 @@ unsigned long SeeedRFID::cardNumber()
 #endif
 
     return sum;
-}
-void SeeedRFID::listen(){
-  _rfidIO->listen();
 }
