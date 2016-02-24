@@ -170,3 +170,6 @@ unsigned long SeeedRFID::cardNumber()
 
     return sum;
 }
+void SeeedRFID::listen(){
+  _rfidIO->listen();
+}
