@@ -14,7 +14,7 @@ RFIDdata tag;
 
 void setup() {
 	Serial.begin(57600);
-	Serial.println("Hello, double bk!");
+	Serial.println("RFID Test..");
 }
 
 void loop() { 
