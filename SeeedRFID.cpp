@@ -83,12 +83,12 @@ boolean SeeedRFID::checkBitValidationUART()
 		return false;
 	}
 }
-
+/*
 boolean SeeedRFID::listen()
 {
 	_rfidIO->listen();
 }
-
+*/
 boolean SeeedRFID::read()
 {
 

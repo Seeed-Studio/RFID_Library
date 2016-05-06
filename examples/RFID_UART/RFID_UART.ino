@@ -7,7 +7,7 @@
 #define RFID_TX_PIN 11
 
 // #define DEBUG
-#define TEST
+// #define TEST
 
 SeeedRFID RFID(RFID_RX_PIN, RFID_TX_PIN);
 RFIDdata tag;

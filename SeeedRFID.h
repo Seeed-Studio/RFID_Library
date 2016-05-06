@@ -83,9 +83,9 @@ public:
 
 	boolean isAvailable();
 	RFIDdata data();
-	boolean listen();
+	//boolean listen();
 	unsigned long cardNumber();
-    void listen();
+    //void listen();
 };
 
 #endif //__SeeedRFID_H__
