@@ -5,7 +5,13 @@ RFID Library
 
 This library only support TTL RS232 serial port.
 
-![125Khz RFID Reader][RFID Image]
+![125Khz RFID Reader](https://statics3.seeedstudio.com/images/product/gr125k.jpg)
+
+
+[Grove - 125KHz RFID Reader
+](https://www.seeedstudio.com/s/Grove-125KHz-RFID-Reader-p-1008.html)
+
+
 
 When read the data from some RFID card, you will get data like `00 91 6f 0b f5`.
 
@@ -154,6 +160,9 @@ void loop() {
 }
 
 ```
+
+For more information please visit [wiki]([wiki](http://wiki.seeedstudio.com/Grove-125KHz_RFID_Reader/)).
+
 ----
 
 This library is written by [Ye Xiaobo][Github Homepage] for seeed studio<br>
