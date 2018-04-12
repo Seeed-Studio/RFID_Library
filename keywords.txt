@@ -12,6 +12,6 @@ SeeedRFID	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-data KEYWORD2
-isAvailable   KEYWORD2
-cardNumber KEYWORD2
+data	KEYWORD2
+isAvailable	KEYWORD2
+cardNumber	KEYWORD2
