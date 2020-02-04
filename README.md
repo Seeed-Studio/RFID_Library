@@ -1,4 +1,4 @@
-RFID Library
+RFID Library  [![Build Status](https://travis-ci.com/Seeed-Studio/RFID_Library.svg?branch=master)](https://travis-ci.com/Seeed-Studio/RFID_Library)
 ============
 
 125Khz RFID library for Arduino. 
